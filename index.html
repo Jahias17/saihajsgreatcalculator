@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="120x120" href="calculatorimage.png">
+</head>
+<body>
+
+
+
+  <div id='calculator'>
+
+    <!-- TITLE -->
+
+    <div id='title'>
+      <h5><b>SHARP ADVANCED D.A.L EL -520X</b></h5>
+      </div>
+      
+      <div id="solarPanel">
+      </div>
+
+    <!-- ENTRY BOX -->
+
+    <div id='entrybox' class='text-right'>
+      <div id='entry'>
+        <p id='answer'>0</p>    
+      </div>
+         <div id='history'>
+        <p>0</p>
+      </div>
+      </div>
+
+    <!-- BUTTONS -->
+
+    <div id='buttons'>
+
+      <button style="font-size:12px;" class='orangeButtons' value='ac' onclick='clearScreenAC()'>AC</button>
+      <button style="font-size:12px;" n class='orangeButtons' value='ce' onclick='clearScreenCE()'>CE</button>
+      <button style="font-size:12px;" class="orangeButtons" value="/" onclick='addOperator(this)'>&divide;</button>
+      <button style="font-size:12px;" class="orangeButtons"  value='*' onclick='addOperator(this)'>x</button>
+
+      <button style="font-size:12px;" value='7' onclick='addOperator(this)'>7</button>
+      <button style="font-size:12px;"  value='8' onclick='addOperator(this)'>8</button>
+      <button style="font-size:12px;"  value='9'onclick='addOperator(this)'>9</button>
+      <button style="font-size:12px;"  class="orangeButtons" value='-' onclick='addOperator(this)'>-</button>
+
+      <button style="font-size:12px;"  value='4' onclick='addOperator(this)'>4</button>
+      <button style="font-size:12px;"  value='5' onclick='addOperator(this)'>5</button>
+      <button style="font-size:12px;"  value='6' onclick='addOperator(this)'>6</button>
+      <button  style="font-size:12px;" class="orangeButtons"  value='+' onclick='addOperator(this)'>+</button>
+
+
+      <button style="font-size:12px;"  value='1' onclick='addOperator(this)'>1</button>
+      <button style="font-size:12px;"  value='2' onclick='addOperator(this)'>2</button>
+      <button style="font-size:12px;"  value='3' onclick='addOperator(this)'>3</button>
+      <button style="font-size:12px;"  class="mystery" value="**" onclick='squareAnswer()'>?</button>
+        
+
+      <button style="font-size:12px;"  id='ZeroButton' value='0' onclick='addOperator(this)'>0</button>
+      <button style="font-size:12px;"  value='.' onclick='addOperator(this)'>.</button>
+      <button style="font-size:12px;"  id='EqualButton' value='=' onclick='equals()'>=</button>
+      <button style="font-size:12px;"  class='invisible'>N</button>
+
+      </div>
+    <!-- end buttons -->
+    <div id='tester'></div>
+  </div>
+  <!-- end calculator -->
+
+
+
+<script>
+var screenOutput = "";
+var storedOutput = "";
+    
+function clearScreenCE() {
+  screenOutput = "";
+  document.getElementById("answer").innerHTML = 0;
+  // document.getElementById("history").innerHTML = 0;
+}
+function clearScreenAC() {
+  screenOutput = "";
+  document.getElementById("answer").innerHTML = 0;
+  document.getElementById("history").innerHTML = 0;
+}
+function addOperator(btnValue) {
+  screenOutput += btnValue.value;
+        if (screenOutput.length > 12 ) {
+        screenOutput = screenOutput.slice(0,12);
+    }
+  document.getElementById("answer").innerHTML = screenOutput;
+}
+    
+    
+function equals() {
+  screenOutput = screenOutput.replace(/x/g, "*");
+  screenOutput = eval(screenOutput);
+  var evalstring = screenOutput.toString();
+     if (evalstring.length > 12) {
+        
+        screenOutput = evalstring.slice(0,12);
+    } 
+  document.getElementById("answer").innerHTML = screenOutput;
+  document.getElementById("history").innerHTML = screenOutput;
+    
+    if (screenOutput === undefined) {
+          screenOutput = "0 + 0";
+          screenOutput = eval(screenOutput);
+          document.getElementById("answer").innerHTML = screenOutput;
+          document.getElementById("history").innerHTML = screenOutput;
+    }
+   
+    if (screenOutput === Infinity) {
+          screenOutput = "Error";
+        // screenOutput = eval(screenOutput);
+          document.getElementById("answer").innerHTML = screenOutput;
+          document.getElementById("history").innerHTML = screenOutput;
+    }
+    
+}
+function squareAnswer() {
+  screenOutput = screenOutput.replace(/x/g, "*");
+    screenOutput ="(" +  screenOutput + ")" + " ** 2";
+  screenOutput = eval(screenOutput);
+  var evalstring = screenOutput.toString();
+     if (evalstring.length > 12) {
+        
+        screenOutput = evalstring.slice(0,12);
+    } 
+  document.getElementById("answer").innerHTML = screenOutput;
+  document.getElementById("history").innerHTML = screenOutput;
+
+   
+    
+    
+}
+    
+    
+    // maybe add?
+    function plusMinus() {
+var lastNumber = screenOutput.slice(-1);
+screenOutput -= lastNumber;
+ var intoInt = parseInt(lastNumber);
+ var negValue = -1 * intoInt;
+ var finValue = negValue.toString();
+
+screenOutput += finValue;
+
+        
+        if (screenOutput.length > 12 ) {
+        screenOutput = screenOutput.slice(0,12);
+    }
+  document.getElementById("answer").innerHTML = screenOutput;
+}
+
+
+    
+    
+    
+    
+    
+</script>
+ 
+   
+    
+    
+
+</body>
+</html>
