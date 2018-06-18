@@ -90,7 +90,7 @@ function clearScreenAC() {
   document.getElementById("history").innerHTML = 0;
 }
 function addOperator(btnValue) {
-  screenOutput = "(" + screenOutput + ")" + btnValue.value;
+  screenOutput = screenOutput + btnValue.value;
         if (screenOutput.length > 12 ) {
         screenOutput = screenOutput.slice(0,12);
     }
